@@ -169,3 +169,6 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+将删除 .idea/sonarlint/issuestore/1/
+将删除 .idea/sonarlint/issuestore/9/
+将删除 .idea/sonarlint/issuestore/a/2/
