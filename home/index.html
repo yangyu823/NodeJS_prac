@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Biketopia</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vegas.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+</head>
+<body>
+
+<div class="bg-wraper overlay has-vignette">
+    <div id="example" class="slider opacity-50 vegas-container" style="height: 983px;"></div>
+</div>
+
+<section class="countdown-timer">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12 col-xs-12 text-center">
+                <div class="heading-count">
+                    <h2>API Instruction</h2>
+                    <a class="text-warning" href="/bike">Show all Bikes   https://localhost:9999/bike</a>
+                    <p class="text-light">Our exciting new website is coming soon! Check back later...</p>
+                    <p class="text-light">Our exciting new website is coming soon! Check back later...</p>
+                    <p class="text-light">Our exciting new website is coming soon! Check back later...</p>
+                    <p class="text-light">Our exciting new website is coming soon! Check back later...</p>
+                    <p class="text-light">Our exciting new website is coming soon! Check back later...</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="assets/js/jquery-min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/vegas.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script type="text/javascript">
+    $("#example").vegas({
+        timer: false,
+        delay: 4000,
+        transitionDuration: 2000,
+        transition: "blur",
+        slides: [
+            {src: "http://moto.zombdrive.com/images1600_/ducati-1199-panigale-r-2013-13.jpg"}
+        ]
+    });
+</script>
+
+</body>
+</html>
