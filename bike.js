@@ -26,7 +26,7 @@ const app = express();
 //     res.send(found)
 // })
 
-router.get('/bike/:brand', (req,res) =>{
+router.get('/bike/:brand', (req, res) => {
 
     const found = data.find(bike => {
         return bike.brand.toUpperCase() === req.params.brand.toUpperCase();
@@ -39,18 +39,14 @@ router.get('/bike/:brand', (req,res) =>{
 
         res.status(404)
             .send(notFound)
+    } else {
+        res.render('bike', {info: found});
     }
 
-
-    res.render('bike',{info:found});
 })
 
-
-
-router.get('/all',  (req, res) =>{
-    var bikeArray = [];
-    for (var i in data) { bikeArray.push(i); }
-    res.render('index', { bike: bikeArray });
+router.get('/all', (req, res) => {
+    res.render('index', {bike: data});
 });
 
 router.get('/origin/:country', (req, res) => {

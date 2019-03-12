@@ -8,8 +8,13 @@
 <h1>SuperBike</h1>
 <ul>
     <% for (var i = 0; i < bike.length; i++) { %>
-    <li> <a href="/bike/<%= bike[i].brand %>"><%= bike[i] %></a> </li>
+    <li><a href="/bike/<%= bike[i].brand %>"><%= bike[i].brand %></a></li>
     <% } %>
 </ul>
+
+
+<a class="text-warning" href="/">Back to Home Page</a>
+
+
 </body>
 </html>
