@@ -4,7 +4,7 @@ const data = require('./public/data')
 const serveIndex = require('serve-index');
 const app = express()
 app.set('view engine', 'ejs');
-const PORT = process.env.PORT ||9999
+const PORT = process.env.PORT || 9999
 
 // Time console log
 // app.use((req, res, next) => {
@@ -23,7 +23,7 @@ app.use('/', express.static('home'))
 app.use('/', serveIndex('home'))
 
 
-app.all('/secret', (req, res, next) =>{
+app.all('/secret', (req, res, next) => {
     res.send('Ducati Panigale 1299s')
     console.log('Accessing the secret section ...')
     next() // pass control to the next handler
@@ -31,7 +31,7 @@ app.all('/secret', (req, res, next) =>{
 
 
 app.route('/superbike')
-    .get( (req, res) => {
+    .get((req, res) => {
         res.send(data)
     })
     .post(function (req, res) {
@@ -42,11 +42,8 @@ app.route('/superbike')
     })
 
 
-
-app.use('/',bike)
-app.use('/panigale/:capacity(\\d+)',bike)
-
-
+app.use('/', bike)
+app.use('/panigale/:capacity(\\d+)', bike)
 
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
