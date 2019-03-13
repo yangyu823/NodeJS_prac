@@ -6,34 +6,35 @@
 </head>
 <body>
 <h1><%= topicHead %></h1>
-<form name="form1" method="POST" action="/sbk/add">
+<form name="form1" method="POST" action="/add/new">
     <table>
         <tr>
             <td>Bike Name</td>
-            <td><input type="text" name="name" ></td>
+            <td><input type="text" name="name"></td>
         </tr>
         <tr>
             <td>Bike Brand</td>
-            <td><input type="text" name="brand" ></td>
+            <td><input type="text" name="brand"></td>
         </tr>
         <tr>
             <td>Bike Origin</td>
-            <td><input type="text" name="country" ></td>
+            <td><input type="text" name="country"></td>
         </tr>
         <tr>
             <td>Bike Capacity</td>
-            <td><input type="text" name="capacity" ></td>
+            <td><input type="text" name="capacity"></td>
         </tr>
         <tr>
             <td>Bike Image</td>
-            <td><input type="text" name="url" ></td>
+            <td><input type="text" name="url"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Save" ></td>
+            <td colspan="2"><input type="submit" value="Save"></td>
         </tr>
     </table>
 </form>
-
-
+<% if(userValue != null){ %>
+<div> Successfully adding a <%= userValue.brand %>  <%= userValue.name %> motorcycle</div>
+<% } %>
 </body>
 </html>

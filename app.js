@@ -12,20 +12,20 @@ const parser = require('body-parser');
 app.use(parser.urlencoded({extended: false}));
 app.use(parser.json());
 
-// app.use(function (req, res, next) {
-//     res.locals.userValue = null;
-//     next();
-// });
+app.use(function (req, res, next) {
+    res.locals.userValue = null;
+    next();
+});
 
 // app.set('views', path.join(__dirname, 'views'));
 
-app.get('/sbk', function (req, res) {
+app.get('/add', function (req, res) {
     res.render('insert', {
         topicHead: 'Add new Bike',
     });
     console.log('user accessing Home page');
 });
-app.post('/sbk/add', function (req, res) {
+app.post('/add/new', function (req, res) {
     const result = {
         name: req.body.name,
         brand: req.body.brand,
