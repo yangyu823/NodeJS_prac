@@ -21,8 +21,8 @@ app.use('/files', express.static('public'))
 app.use('/files', serveIndex('public'))
 
 
-app.use('/', express.static('home'))
-app.use('/', serveIndex('home'))
+app.use('/', express.static('homepage'))
+app.use('/', serveIndex('homepage'))
 
 
 app.all('/secret', (req, res, next) => {

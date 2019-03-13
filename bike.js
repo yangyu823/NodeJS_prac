@@ -18,10 +18,10 @@ router.get("/brand/:brand", (req, res) => {
         const dbo = db.db("motorcycle");
         const query = {brand: req.params.brand}
         dbo.collection("superbike").createIndex({brand: "text"})
-        dbo.collection("superbike").findOne({$text: {$search: req.params.brand}}, function(err, result) {
+        dbo.collection("superbike").findOne({$text: {$search: req.params.brand}}, function (err, result) {
             if (err) throw err;
             // res.send(result.name)
-            res.render('bike', {info: result});
+            res.render('bike_mongo', {info: result});
             db.close();
         })
     })
@@ -46,6 +46,23 @@ router.get('/bike/:brand', (req, res) => {
 
 });
 
+
+// This is using mongo database to load all the data
+router.get('/alldb', (req, res) => {
+    MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+        if (err) throw err;
+        const dbo = db.db("motorcycle");
+        dbo.collection("superbike").find({}).toArray( function (err, result) {
+            if (err) throw err;
+            // res.send(result)
+            res.render('index_mongo', {bike: result});
+            db.close();
+        })
+    })
+});
+
+
+// This is using local file to display all the data
 router.get('/all', (req, res) => {
     res.render('index', {bike: data});
 });
@@ -53,9 +70,9 @@ router.get('/all', (req, res) => {
 router.get('/origin/:country', (req, res) => {
     const result = data.filter(bike => {
         return bike.country.toUpperCase() === req.params.country.toUpperCase();
-    })
+    });
     res.send(result)
-})
+});
 
 
 router.get('/panigale/:capacity(\\d+)', (req, res) => {
@@ -63,4 +80,4 @@ router.get('/panigale/:capacity(\\d+)', (req, res) => {
 });
 
 
-module.exports = router
+module.exports = router;
