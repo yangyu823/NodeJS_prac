@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form name="form1" method="POST" action="/bike/add">
+    <table>
+        <tr>
+            <td>Bike Name</td>
+            <td><input type="text" name="name" ></td>
+        </tr>
+        <tr>
+            <td>Bike Brand</td>
+            <td><input type="text" name="brand" ></td>
+        </tr>
+        <tr>
+            <td>Bike Origin</td>
+            <td><input type="text" name="country" ></td>
+        </tr>
+        <tr>
+            <td>Bike Capacity</td>
+            <td><input type="text" name="capacity" ></td>
+        </tr>
+        <tr>
+            <td>Bike Image</td>
+            <td><input type="text" name="url" ></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Save" ></td>
+        </tr>
+    </table>
+</form>
+<% if(userValue!=null){ %>
+<div> Data Entered as <%= userValue.brand %>  <%= userValue.name %> </div>
+<%}%>
+
+</body>
+</html>
