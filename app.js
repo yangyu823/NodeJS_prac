@@ -7,8 +7,8 @@ app.set('view engine', 'ejs');
 const PORT = process.env.PORT || 9999;
 
 
-// var path = require('path');
-var parser = require('body-parser');
+// const path = require('path');
+const parser = require('body-parser');
 app.use(parser.urlencoded({extended: false}));
 app.use(parser.json());
 
@@ -17,7 +17,6 @@ app.use(parser.json());
 //     next();
 // });
 
-// app.set('view engine', 'ejs');
 // app.set('views', path.join(__dirname, 'views'));
 
 app.get('/sbk', function (req, res) {
@@ -50,20 +49,19 @@ app.post('/sbk/add', function (req, res) {
 
 // This is for opening files
 app.use('/files', express.static('public'))
-
 // This is for files index system
-app.use('/files', serveIndex('public'))
+app.use('/files', serveIndex('public'));
 
 
-app.use('/', express.static('homepage'))
-app.use('/', serveIndex('homepage'))
+app.use('/', express.static('homepage'));
+app.use('/', serveIndex('homepage'));
 
 
 app.all('/secret', (req, res, next) => {
-    res.send('Ducati Panigale 1299s')
+    res.send('Ducati Panigale 1299s');
     console.log('Accessing the secret section ...');
     next() // pass control to the next handler
-})
+});
 
 // app.route('/superbike')
 //     .get((req, res) => {
@@ -81,4 +79,4 @@ app.use('/', bike);
 app.use('/panigale/:capacity(\\d+)', bike);
 
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

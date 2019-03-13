@@ -1,12 +1,8 @@
 const express = require('express');
 const data = require("./public/data");
-
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
 const router = express.Router();
-
-
-
 
 // router.use(function timeLog(req, res, next) {
 //     console.log('Time ', Date.now())
@@ -68,13 +64,6 @@ router.get('/alldb', (req, res) => {
 router.get('/all', (req, res) => {
     res.render('index', {bike: data});
 });
-
-
-
-
-
-
-
 
 router.get('/origin/:country', (req, res) => {
     const result = data.filter(bike => {
