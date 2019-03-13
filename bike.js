@@ -1,5 +1,7 @@
 const express = require('express');
 const data = require("./public/data");
+const MongoClient = require('mongodb').MongoClient;
+const url = "mongodb://localhost:27017/";
 const router = express.Router();
 const app = express();
 
@@ -8,24 +10,23 @@ const app = express();
 //     console.log('Time ', Date.now())
 //     next()
 // })
-// router.get("/brand/:brand", (req, res) => {
-//     const found = data.find(bike => {
-//         return bike.brand.toUpperCase() === req.params.brand.toUpperCase();
-//     })
-//
-//     if (!found) {
-//         const notFound = {
-//             status: 404,
-//             message: 'Can not find the bike with brand name ' + req.params.brand
-//         }
-//
-//         res.status(404)
-//             .send(notFound)
-//     }
-//
-//     res.send(found)
-// })
 
+// This is using Mongo Database
+router.get("/brand/:brand", (req, res) => {
+    MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+        if (err) throw err;
+        const dbo = db.db("motorcycle");
+        const query = {brand: req.params.brand}
+        dbo.collection("superbike").createIndex({brand: "text"})
+        dbo.collection("superbike").findOne({$text: {$search: req.params.brand}}, function(err, result) {
+            if (err) throw err;
+            // res.send(result.name)
+            res.render('bike', {info: result});
+            db.close();
+        })
+    })
+});
+// This is Using local js File
 router.get('/bike/:brand', (req, res) => {
 
     const found = data.find(bike => {
@@ -43,7 +44,7 @@ router.get('/bike/:brand', (req, res) => {
         res.render('bike', {info: found});
     }
 
-})
+});
 
 router.get('/all', (req, res) => {
     res.render('index', {bike: data});

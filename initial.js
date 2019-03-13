@@ -17,7 +17,7 @@ MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
 
 
     ];
-    dbo.collection("superbikes").insertMany(myobj, function(err, res) {
+    dbo.collection("superbike").insertMany(myobj, function(err, res) {
         if (err) throw err;
         console.log("Number of documents inserted: " + res.insertedCount);
         db.close();
