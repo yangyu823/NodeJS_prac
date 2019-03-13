@@ -1,9 +1,11 @@
 const express = require('express');
 const data = require("./public/data");
+
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
 const router = express.Router();
-const app = express();
+
+
 
 
 // router.use(function timeLog(req, res, next) {
@@ -69,23 +71,6 @@ router.get('/all', (req, res) => {
 
 
 
-// This is for insert data into Mongo Database
-router.post('/ora/add', (req,res) =>{
-    const bike ={
-        name: req.body.name,
-        brand:req.body.brand,
-        country:req.body.country,
-        capacity:req.body.capacity,
-        url:req.body.url
-    };
-
-    console.log(bike);
-    res.render('insert',{
-        userValue: bike,
-        topicHead: 'Add new bike'
-    })
-
-})
 
 
 
