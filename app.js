@@ -33,10 +33,11 @@ app.post('/add/new', function (req, res) {
         capacity: req.body.capacity,
         url: req.body.url
     };
+
     console.log(result);
     res.render('insert', {
         userValue: result,
-        topicHead: 'Student Form'
+        topicHead: 'Add Bike'
     });
 });
 
