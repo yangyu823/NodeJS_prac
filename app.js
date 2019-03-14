@@ -84,4 +84,15 @@ app.use('/', serveIndex('homepage'));
 
 app.use('/add', bike)
 app.use('/', bike);
+
+
+
+/*Testing area*/
+app.all('/hello',(req,res)=>{
+    res.send('Hello world')
+})
+
+
+
+
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

@@ -96,10 +96,10 @@ router.get('/panigale/:capacity(\\d+)', (req, res) => {
     res.send(req.params)
 });
 
-router.all('/secret', (req, res, next) => {
+router.all('/secret', (req, res) => {
     res.send('Ducati Panigale 1299s');
     console.log('Accessing the secret section ...');
-    next() // pass control to the next handler
+    // next() // pass control to the next handler
 });
 
 router.use(function timeLog(req, res, next) {
