@@ -1,29 +1,23 @@
 const express = require('express');
 const bike = require('./bike.js');
-const data = require('./public/data');
 const serveIndex = require('serve-index');
 const app = express();
-app.set('view engine', 'ejs');
-const PORT = process.env.PORT || 9999;
-
-
-// const path = require('path');
 const parser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
+const url = "mongodb://localhost:27017/";
+const PORT = process.env.PORT || 9999;
+app.set('view engine', 'ejs');
+
+
+/*
+Adding new motorcycle to database
+*/
 app.use(parser.urlencoded({extended: false}));
 app.use(parser.json());
 
 app.use(function (req, res, next) {
     res.locals.userValue = null;
     next();
-});
-
-// app.set('views', path.join(__dirname, 'views'));
-
-app.get('/add', function (req, res) {
-    res.render('insert', {
-        topicHead: 'Add new Bike',
-    });
-    console.log('user accessing Home page');
 });
 app.post('/add/new', function (req, res) {
     const result = {
@@ -34,6 +28,16 @@ app.post('/add/new', function (req, res) {
         url: req.body.url
     };
 
+    MongoClient.connect(url,{useNewUrlParser: true}, function(err, db) {
+        if (err) throw err;
+        const dbo = db.db("motorcycle");
+        const bike = result;
+        dbo.collection("superbike").insertOne(bike, function(err, res) {
+            if (err) throw err;
+            console.log("Adding new motorcycle");
+            db.close();
+        });
+    });
     console.log(result);
     res.render('insert', {
         userValue: result,
@@ -48,7 +52,9 @@ app.post('/add/new', function (req, res) {
 //     next();
 // });
 
-// This is for opening files
+/*
+This is for opening files
+*/
 app.use('/files', express.static('public'))
 // This is for files index system
 app.use('/files', serveIndex('public'));
@@ -57,27 +63,6 @@ app.use('/files', serveIndex('public'));
 app.use('/', express.static('homepage'));
 app.use('/', serveIndex('homepage'));
 
-
-app.all('/secret', (req, res, next) => {
-    res.send('Ducati Panigale 1299s');
-    console.log('Accessing the secret section ...');
-    next() // pass control to the next handler
-});
-
-// app.route('/superbike')
-//     .get((req, res) => {
-//         res.send(data)
-//     })
-//     .post(function (req, res) {
-//         res.send('Add a custom bike')
-//     })
-//     .delete(function (req, res) {
-//         res.send('Delete a custom bike')
-//     })
-
-
+app.use('/add', bike)
 app.use('/', bike);
-app.use('/panigale/:capacity(\\d+)', bike);
-
-
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

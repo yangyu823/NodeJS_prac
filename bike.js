@@ -4,12 +4,11 @@ const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
 const router = express.Router();
 
-// router.use(function timeLog(req, res, next) {
-//     console.log('Time ', Date.now())
-//     next()
-// })
 
-// This is using Mongo Database
+
+/*
+This is using Mongo Database
+*/
 router.get("/brand/:brand", (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
@@ -24,17 +23,19 @@ router.get("/brand/:brand", (req, res) => {
         })
     })
 });
-// This is Using local js File
+/*
+This is Using local js File
+*/
 router.get('/bike/:brand', (req, res) => {
 
     const found = data.find(bike => {
         return bike.brand.toUpperCase() === req.params.brand.toUpperCase();
-    })
+    });
     if (!found) {
         const notFound = {
             status: 404,
             message: 'Can not find the bike with brand name ' + req.params.brand
-        }
+        };
 
         res.status(404)
             .send(notFound)
@@ -45,7 +46,9 @@ router.get('/bike/:brand', (req, res) => {
 });
 
 
-// This is using mongo database to load all the data
+/*
+This is using mongo database to load all the data
+*/
 router.get('/alldb', (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
@@ -60,7 +63,9 @@ router.get('/alldb', (req, res) => {
 });
 
 
-// This is using local file to display all the data
+/*
+This is using local file to display all the data
+*/
 router.get('/all', (req, res) => {
     res.render('index', {bike: data});
 });
@@ -73,9 +78,36 @@ router.get('/origin/:country', (req, res) => {
 });
 
 
+/*
+Add New Bike Page
+*/
+router.get('/add', function (req, res) {
+    res.render('insert', {
+        topicHead: 'Add new Bike',
+    });
+    console.log('user accessing Home page');
+});
+
+
+
+
 router.get('/panigale/:capacity(\\d+)', (req, res) => {
     res.send(req.params)
 });
 
+router.all('/secret', (req, res, next) => {
+    res.send('Ducati Panigale 1299s');
+    console.log('Accessing the secret section ...');
+    next() // pass control to the next handler
+});
 
+router.use(function timeLog(req, res, next) {
+    console.log('Time ', Date.now())
+    next()
+})
+
+router.use(function timeLog(req, res, next) {
+    console.log('Time ', Date.now())
+    next()
+})
 module.exports = router;
