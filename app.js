@@ -45,6 +45,25 @@ app.post('/add/new', function (req, res) {
     });
 });
 
+/*
+Delete motorcycle from database
+*/
+app.delete("/delete/:name", (req, res) => {
+    MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+        if (err) throw err;
+        const dbo = db.db("motorcycle");
+        // const query = {brand: req.params.brand};
+        dbo.collection("superbike").createIndex({name: "text"})
+        dbo.collection("superbike").deleteOne({$text: {$search: req.params.name}}, function (err, result) {
+            if (err) throw err;
+            // res.send(result);
+            console.log("DELETE SUCCESSFUL")
+            res.redirect("https://localhost:9999/alldb");
+            db.close();
+        })
+    })
+});
+
 
 // Time console log
 // app.use((req, res, next) => {

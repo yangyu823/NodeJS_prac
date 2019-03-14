@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 /*
-This is using Mongo Database
+This is using Mongo Database to search for bike
 */
 router.get("/brand/:name", (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
@@ -23,6 +23,26 @@ router.get("/brand/:name", (req, res) => {
         })
     })
 });
+
+/*
+Delete motorcycle from database
+*/
+
+// router.delete("/delete/:name", (req, res) => {
+//     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+//         if (err) throw err;
+//         const dbo = db.db("motorcycle");
+//         // const query = {brand: req.params.brand};
+//         dbo.collection("superbike").createIndex({name: "text"})
+//         dbo.collection("superbike").deleteOne({$text: {$search: req.params.name}}, function (err, result) {
+//             if (err) throw err;
+//             // res.send(result);
+//             console.log("DELETE SUCCESSFUL")
+//             res.redirect("https://localhost:9999/alldb");
+//             db.close();
+//         })
+//     })
+// });
 /*
 This is Using local js File
 */
