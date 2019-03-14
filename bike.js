@@ -9,15 +9,15 @@ const router = express.Router();
 /*
 This is using Mongo Database
 */
-router.get("/brand/:brand", (req, res) => {
+router.get("/brand/:name", (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
         const dbo = db.db("motorcycle");
         // const query = {brand: req.params.brand};
-        dbo.collection("superbike").createIndex({brand: "text"})
-        dbo.collection("superbike").findOne({$text: {$search: req.params.brand}}, function (err, result) {
+        dbo.collection("superbike").createIndex({name: "text"})
+        dbo.collection("superbike").findOne({$text: {$search: req.params.name}}, function (err, result) {
             if (err) throw err;
-            // res.send(result)
+            // res.send(result);
             res.render('bike_mongo', {info: result});
             db.close();
         })
@@ -26,15 +26,15 @@ router.get("/brand/:brand", (req, res) => {
 /*
 This is Using local js File
 */
-router.get('/bike/:brand', (req, res) => {
+router.get('/bike/:name', (req, res) => {
 
     const found = data.find(bike => {
-        return bike.brand.toUpperCase() === req.params.brand.toUpperCase();
+        return bike.name.toUpperCase() === req.params.name.toUpperCase();
     });
     if (!found) {
         const notFound = {
             status: 404,
-            message: 'Can not find the bike with brand name ' + req.params.brand
+            message: 'Can not find the bike with brand name ' + req.params.name
         };
 
         res.status(404)

@@ -20,7 +20,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             url: "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/trimsdb/8654091-0-50936701.jpg"
         },
         {
-            name: 'Triumph',
+            name: 'Daytona675R',
             brand: 'Triumph',
             country: 'UK',
             capacity: '675cc',
