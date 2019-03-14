@@ -58,7 +58,7 @@ app.delete("/delete/:name", (req, res) => {
             if (err) throw err;
             // res.send(result);
             console.log("DELETE SUCCESSFUL")
-            res.redirect("https://localhost:9999/alldb");
+            res.send("Delete Successful");
             db.close();
         })
     })
