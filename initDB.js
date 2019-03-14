@@ -6,7 +6,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
     const dbo = db.db("motorcycle");
     const myobj = [
         {
-            name: 'Panigale 1299',
+            name: 'Panigale1299',
             brand: 'Ducati',
             country: 'Italy',
             capacity: '1300cc',

@@ -13,11 +13,11 @@ router.get("/brand/:brand", (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
         const dbo = db.db("motorcycle");
-        const query = {brand: req.params.brand};
+        // const query = {brand: req.params.brand};
         dbo.collection("superbike").createIndex({brand: "text"})
         dbo.collection("superbike").findOne({$text: {$search: req.params.brand}}, function (err, result) {
             if (err) throw err;
-            // res.send(result.name)
+            // res.send(result)
             res.render('bike_mongo', {info: result});
             db.close();
         })
@@ -106,8 +106,4 @@ router.use(function timeLog(req, res, next) {
     next()
 })
 
-router.use(function timeLog(req, res, next) {
-    console.log('Time ', Date.now())
-    next()
-})
 module.exports = router;
