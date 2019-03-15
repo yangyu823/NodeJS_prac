@@ -23,10 +23,11 @@ describe('/GET hello', () => {
             .get('/hello')
             .end((err, res) => {
                 // console.log(res.text)
-                chai.expect(res.status).to.equal(200);
+                // chai.expect(res.status).to.equal(200);
                 chai.expect(res.text).to.equal("Hello world");
 
-                // expect(res).to.have.status(200)
+                expect(res).to.have.status(200)
+                expect(res.text).to.equal("Hello world")
                 // res.should.have.status(200);
                 // res.body.should.be.a('string');
                 done();
