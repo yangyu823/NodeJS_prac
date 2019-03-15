@@ -6,7 +6,7 @@ process.env.NODE_ENV = 'test';
 
 chai.use(chaiHttp);
 
-describe('Test', function() {
+describe('Example Test', function() {
     it('basic test equality var', done => {
         let x = 10;
         let y = 10;

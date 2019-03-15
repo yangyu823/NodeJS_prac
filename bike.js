@@ -2,8 +2,9 @@ const express = require('express');
 const data = require("./public/data");
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
-const router = express.Router();
+const format = require('util').format;
 
+const router = express.Router();
 
 
 /*
@@ -52,14 +53,19 @@ This is using mongo database to load all the data
 */
 router.get('/alldb', (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
-        if (err) throw err;
-        const dbo = db.db("motorcycle");
-        dbo.collection("superbike").find({}).toArray( function (err, result) {
-            if (err) throw err;
-            // res.send(result)
-            res.render('index_mongo', {bike: result});
-            db.close();
-        })
+        const result = [];
+        if (err) {
+            const title = "DB fail";
+            res.render('index_mongo', {bike: result, title: title});
+        } else {
+            const dbo = db.db("motorcycle");
+            dbo.collection("superbike").find({}).toArray(function (err, result) {
+                if (err) throw err;
+                const title = "SuperBike - Mongo DB"
+                res.render('index_mongo', {bike: result, title: title});
+                db.close();
+            })
+        }
     })
 });
 
@@ -90,8 +96,6 @@ router.get('/add', function (req, res) {
 });
 
 
-
-
 router.get('/panigale/:capacity(\\d+)', (req, res) => {
     res.send(req.params)
 });
@@ -102,9 +106,9 @@ router.all('/secret', (req, res) => {
     // next() // pass control to the next handler
 });
 
-router.use(function timeLog(req, res, next) {
-    console.log('Time ', Date.now())
-    next()
-})
+// router.use(function timeLog(req, res, next) {
+//     console.log('Time ', Date.now())
+//     next()
+// })
 
 module.exports = router;
