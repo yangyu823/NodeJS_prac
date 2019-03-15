@@ -19,9 +19,10 @@ describe('Test', function() {
 
 describe('/GET hello', () => {
     it('it should GET hello message', (done) => {
-        chai.request('https://localhost:9999')
+        chai.request('http://localhost:9999')
             .get('/hello')
             .end((err, res) => {
+                // console.log(res.text)
                 chai.expect(res.status).to.equal(200);
                 chai.expect(res.text).to.equal("Hello world");
 
