@@ -2,7 +2,7 @@ version: '3'
 services:
   app:
     build: .
-    image: yangyu823/node-yu
+    image: yangyu823/node
     container_name: app
     restart: always
     ports:
