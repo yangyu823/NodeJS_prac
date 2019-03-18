@@ -14,7 +14,7 @@ RUN npm install
 EXPOSE 9999
 
 # Populate initial data into Mongo DB
-CMD ["node", "/public/initDB.js"]
+CMD ["node", "public/initDB.js"]
 
 # Run the Node application
 CMD ["node", "app.js"]
