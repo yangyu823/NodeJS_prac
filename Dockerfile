@@ -13,4 +13,6 @@ RUN npm install
 # Exposing a port for the application to run on
 EXPOSE 9999
 
+
+
 CMD ["node", "app.js"]
