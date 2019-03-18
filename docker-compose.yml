@@ -3,5 +3,16 @@ services:
   app:
     build: .
     image: yangyu823/node-yu
+    container_name: app
+    restart: always
     ports:
       - "9999:9999"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./public:/public/db
+    ports:
+      - "27017:27017"

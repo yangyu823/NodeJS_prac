@@ -4,7 +4,7 @@ FROM node:8
 # Create a work directory
 RUN mkdir -p /app
 
-# Set work directory for RUN command
+# Set work directory for COPY,RUN,CMD command
 WORKDIR /app
 
 COPY . /app
