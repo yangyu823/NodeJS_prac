@@ -2,7 +2,7 @@ const express = require('express');
 const data = require("./public/data");
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
-const format = require('util').format;
+// const format = require('util').format;
 
 const router = express.Router();
 
