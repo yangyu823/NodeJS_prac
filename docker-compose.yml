@@ -1,6 +1,7 @@
 version: '3'
 services:
-  web:
+  app:
     build: .
+    image: node-yu
     ports:
       - "9999:9999"
