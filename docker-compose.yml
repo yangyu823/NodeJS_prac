@@ -9,6 +9,7 @@ services:
       - "9999:9999"
     links:
       - mongo
+#  Mongo Database setup
   mongo:
     container_name: mongo
     image: mongo
@@ -16,10 +17,12 @@ services:
       - ./public:/public/db
     ports:
       - "27017:27017"
+#  Data seed population
   mongo-seed:
     build: ./mongo
     links:
       - mongo
+#  Mongo Database GUI setup
   adminmongo:
     image: "mrvautin/adminmongo"
     environment:
