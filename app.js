@@ -4,7 +4,8 @@ const serveIndex = require('serve-index');
 const app = express();
 const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/";
+// const url = "mongodb://localhost:27017/";
+const url = "mongodb://mongo/test";
 const PORT = process.env.PORT || 9999;
 app.set('view engine', 'ejs');
 
