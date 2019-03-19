@@ -24,6 +24,7 @@ services:
       - mongo
 #  Mongo Database GUI setup
   adminmongo:
+    container_name: adminmongo
     image: "mrvautin/adminmongo"
     environment:
       - CONN_NAME=DB_CONN
