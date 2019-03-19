@@ -16,10 +16,14 @@ services:
       - ./public:/public/db
     ports:
       - "27017:27017"
+  mongo-seed:
+    build: ./mongo
+    links:
+      - mongo
   adminmongo:
     image: "mrvautin/adminmongo"
     environment:
-      - CONN_NAME=whatever
+      - CONN_NAME=DB_CONN
       - DB_HOST=mongo
       - DB_PORT=27017
       - HOST=0.0.0.0
