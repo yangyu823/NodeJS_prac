@@ -2,11 +2,11 @@ const axios = require('axios');
 const url = 'https://api.adviceslip.com/advice';
 
 
-expors.getAdvice = async () => {
+exports.getAdvice = async () => {
     let response = await axios.get(url)
         .then(res => {
-        return res.data;
-    })
+            return res.data.slip.advice;
+        })
         .catch(err => {
             throw new Error(err)
         });
