@@ -49,6 +49,6 @@ const bike = [
         brand: "Suzuki",
         country: 'Japan'
     }
-]
+];
 
 module.exports = bike;
