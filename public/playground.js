@@ -8,9 +8,14 @@ const delay = (second) => new Promise((resolves => {
     setTimeout(resolves, second * 1000);
 }));
 const myobj = {};
-// console.log(os.cpus());
-// console.log(os.freemem());
-// console.log(os.homedir());
+
+/*  System output info playground
+console.log(os.cpus());
+console.log(os.freemem());
+console.log(os.homedir());
+*/
+
+// Promises Playground with some async
 function doA() {
     return new Promise(((resolve, reject) => {
         fs.readFile('./public/hello.txt', (err, data) => {
@@ -34,7 +39,6 @@ async function test() {
     myobj['data2'] = await doB();
     console.log(myobj)
 }
-console.log('test',myobj);
 test();
 
 // Async process playground
@@ -43,13 +47,18 @@ const SequentialTest = async ()=>{
     await delay(1);
     console.log('waiting');
     await delay(2);
-    await writeFile('file.txt', 'Sample File ....');
-    beep();
+    try {
+        await writeFile('file.txt', 'Sample File ....');
+        beep();
+    }catch (e) {
+        console.error(e);
+    }
     console.log('file.txt created ');
     await delay(3);
     await unlink('file.txt');
     beep();
     console.log('file.txt removed');
+    return Promise.resolve();
 };
 
 SequentialTest();
