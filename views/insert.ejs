@@ -29,20 +29,31 @@
             <td><input type="text" name="url"></td>
         </tr>
         <tr>
+            <td>Image Upload</td>
+            <td><input type="file" name="image"/><br/><br/></td>
+        </tr>
+        <tr>
             <td colspan="2"><input type="submit" value="Save"></td>
         </tr>
     </table>
 </form>
+
+<h4>Image Upload</h4>
+<form method="post" action="upload/post" enctype="multipart/form-data">
+    <input type="file" name="image"/><br/><br/>
+    <button type="submit" name="upload">Upload</button>
+</form>
+
 <% if(userValue != null){ %>
-<div> Successfully adding a <%= userValue.brand %>  <%= userValue.name %> motorcycle</div>
-<div>The motorcycle data has been store in /public/NewBike.json</div>
+    <div> Successfully adding a <%= userValue.brand %>  <%= userValue.name %> motorcycle</div>
+    <div>The motorcycle data has been store in /public/NewBike.json</div>
 <% } %>
 
-<br />
-<br />
+<br/>
+<br/>
 <a class="text-warning" href="/alldb">Back to Bike Page</a>
-<br />
-<br />
+<br/>
+<br/>
 
 <a class="text-warning" href="/">Back to Home Page</a>
 
