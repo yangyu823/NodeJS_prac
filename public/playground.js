@@ -2,12 +2,22 @@ const os = require('os');
 const fs = require('fs');
 const {promisify} = require('util');
 const writeFile = promisify(fs.writeFile);
-const unlink = promisify(fs.unlink);
+const jsonfile = require('jsonfile');
 const beep = () => process.stdout.write("\x07");
 const delay = (second) => new Promise((resolves => {
     setTimeout(resolves, second * 1000);
 }));
 const myobj = {};
+
+
+const file = './public/NewBike.json';
+
+exports.AppendNew = async (data) => {
+    jsonfile.writeFile(file, data, {flag: 'a'}, (err) => {
+        if (err) console.error(err);
+    });
+};
+
 
 /*  System output info playground
 console.log(os.cpus());
@@ -25,6 +35,7 @@ function doA() {
         });
     }))
 }
+
 function doB() {
     return new Promise(((resolve, reject) => {
         fs.readFile('./public/helloworld.txt', (err, data) => {
@@ -34,15 +45,17 @@ function doB() {
         });
     }))
 }
+
 async function test() {
     myobj['data1'] = await doA();
     myobj['data2'] = await doB();
     console.log(myobj)
 }
-test();
+
+// test();
 
 // Async process playground
-const SequentialTest = async (data)=>{
+const SequentialTest = async (data) => {
     console.log('starting');
     await delay(1);
     console.log('waiting');
@@ -50,7 +63,7 @@ const SequentialTest = async (data)=>{
     try {
         await writeFile('./public/bike.json', data);
         beep();
-    }catch (e) {
+    } catch (e) {
         console.error(e);
     }
     console.log('file.txt created ');
@@ -61,4 +74,4 @@ const SequentialTest = async (data)=>{
     return Promise.resolve();
 };
 
-SequentialTest('hello world');
+// SequentialTest('hello world');

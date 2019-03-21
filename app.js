@@ -29,7 +29,7 @@ app.post('/add/new', async (req, res) => {
         capacity: req.body.capacity,
         url: req.body.url
     };
-    api.SequentialTest(result);
+    api.AppendNew(result);
 
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
