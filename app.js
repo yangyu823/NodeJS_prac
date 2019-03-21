@@ -5,7 +5,7 @@ const app = express();
 const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 // const url = "mongodb://localhost:27017/";
-const api = require('./3rdAPI/api')
+const api = require('./3rdAPI/api');
 const url = "mongodb://mongo/test";
 const PORT = process.env.PORT || 9999;
 app.set('view engine', 'ejs');

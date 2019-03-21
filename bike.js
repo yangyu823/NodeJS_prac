@@ -3,6 +3,7 @@ const data = require("./public/data");
 const MongoClient = require('mongodb').MongoClient;
 // const url = "mongodb://localhost:27017/";
 const url = "mongodb://mongo/test";
+const api = require('./3rdAPI/api');
 // const format = require('util').format;
 
 const router = express.Router();
@@ -74,8 +75,9 @@ router.get('/alldb', (req, res) => {
 /*
 This is using local file to display all the data
 */
-router.get('/all', (req, res) => {
-    res.render('index', {bike: data});
+router.get('/all', async (req, res) => {
+    const advice = await api.getAdvice();
+    res.render('index', {bike: data, info:advice});
 });
 
 router.get('/origin/:country', (req, res) => {
