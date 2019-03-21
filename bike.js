@@ -6,14 +6,9 @@ const url = "mongodb://localhost:27017/";
 // const url = "mongodb://mongo/test";
 //
 const api = require('./3rdAPI/api');
-// const format = require('util').format;
-
 const router = express.Router();
 
-
-/*
-This is using Mongo Database to search for bike
-*/
+// This is using Mongo Database to search for bike
 router.get("/brand/:name", (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
@@ -29,9 +24,7 @@ router.get("/brand/:name", (req, res) => {
     })
 });
 
-/*
-This is Using local js File
-*/
+// This is Using local js File
 router.get('/bike/:name', (req, res) => {
 
     const found = data.find(bike => {
@@ -52,9 +45,7 @@ router.get('/bike/:name', (req, res) => {
 });
 
 
-/*
-This is using mongo database to load all the data
-*/
+// This is using mongo database to load all the data
 router.get('/alldb', (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         const result = [];
@@ -90,9 +81,7 @@ router.get('/origin/:country', (req, res) => {
 });
 
 
-/*
-Add New Bike Page
-*/
+// Rendering Add New Bike Page
 router.get('/add', function (req, res) {
     res.render('insert', {
         topicHead: 'Add new Bike',
@@ -123,6 +112,7 @@ router.post('/add/new', async (req, res) => {
         capacity: req.body.capacity,
         url: req.body.url
     };
+    // Add data into local json file
     api.AppendNew(result);
 
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
