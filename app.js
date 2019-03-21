@@ -20,16 +20,15 @@ app.use(function (req, res, next) {
 //     next();
 // });
 
-
-// This is for rendering homepage
-app.use(express.static('homepage'));
-app.use('/', router);
-
 // This is for opening files
 app.use('/files', express.static('public'));
 // This is for files index system
 app.use('/files', serveIndex('public'));
 
+
+// This is for rendering homepage
+app.use(express.static('homepage'));
+app.use('/', router);
 
 
 /*Testing area*/
