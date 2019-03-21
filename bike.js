@@ -1,12 +1,15 @@
 const express = require('express');
 const data = require("./public/data");
 const MongoClient = require('mongodb').MongoClient;
+const path = require('path');
+const router = express.Router();
+const upload = require('./bike_upload');
+const Resize = require('./bike_resize');
 //
-const url = "mongodb://localhost:27017/";
-// const url = "mongodb://mongo/test";
+// const url = "mongodb://localhost:27017/";
+const url = "mongodb://mongo/test";
 //
 const api = require('./3rdAPI/api');
-const router = express.Router();
 
 // This is using Mongo Database to search for bike
 router.get("/brand/:name", (req, res) => {
@@ -44,7 +47,6 @@ router.get('/bike/:name', (req, res) => {
 
 });
 
-
 // This is using mongo database to load all the data
 router.get('/alldb', (req, res) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
@@ -64,7 +66,6 @@ router.get('/alldb', (req, res) => {
     })
 });
 
-
 /*
 This is using local file to display all the data
 */
@@ -80,7 +81,6 @@ router.get('/origin/:country', (req, res) => {
     res.send(result)
 });
 
-
 // Rendering Add New Bike Page
 router.get('/add', function (req, res) {
     res.render('insert', {
@@ -88,7 +88,6 @@ router.get('/add', function (req, res) {
     });
     console.log('user accessing Home page');
 });
-
 
 router.get('/panigale/:capacity(\\d+)', (req, res) => {
     res.send(req.params)
@@ -100,17 +99,21 @@ router.all('/secret', (req, res) => {
     // next() // pass control to the next handler
 });
 
-
-/*
-Adding new motorcycle to database
-*/
-router.post('/add/new', async (req, res) => {
+// Adding new motorcycle to database
+router.post('/add/new', upload.single('image'), async (req, res) => {
+    const imagePath = path.join(__dirname, '/homepage/images');
+    const fileUpload = new Resize(imagePath);
+    console.log((req.body));
+    if (!req.file) {
+        res.status(401).json({error: 'Please provide an image'});
+    }
+    const filename = await fileUpload.save(req.file.buffer);
     const result = {
         name: req.body.name,
         brand: req.body.brand,
         country: req.body.country,
         capacity: req.body.capacity,
-        url: req.body.url
+        url: '/images/'+filename
     };
     // Add data into local json file
     api.AppendNew(result);

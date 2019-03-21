@@ -1,17 +1,11 @@
 const express = require('express');
 const router = require('./bike.js');
-const serveIndex = require('serve-index');
 const app = express();
+const serveIndex = require('serve-index');
 const parser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
-//
-const url = "mongodb://localhost:27017/";
-// const url = "mongodb://mongo/test";
-//
 const api = require('./3rdAPI/api');
 const PORT = process.env.PORT || 9999;
 app.set('view engine', 'ejs');
-
 
 app.use(parser.urlencoded({extended: false}));
 app.use(parser.json());
@@ -26,14 +20,16 @@ app.use(function (req, res, next) {
 //     next();
 // });
 
+
+// This is for rendering homepage
+app.use(express.static('homepage'));
+app.use('/', router);
+
 // This is for opening files
 app.use('/files', express.static('public'));
 // This is for files index system
 app.use('/files', serveIndex('public'));
 
-// This is for rendering homepage
-app.use(express.static('homepage'));
-app.use('/', router);
 
 
 /*Testing area*/
