@@ -10,7 +10,6 @@ const url = "mongodb://mongo/test";
 const PORT = process.env.PORT || 9999;
 app.set('view engine', 'ejs');
 
-
 /*
 Adding new motorcycle to database
 */
@@ -35,7 +34,7 @@ app.post('/add/new', async (req, res) => {
         if (err) throw err;
         const dbo = db.db("motorcycle");
         const bike = result;
-        dbo.collection("superbike").insertOne(bike,  (err, res)=> {
+        dbo.collection("superbike").insertOne(bike, (err, res) => {
             if (err) throw err;
             console.log("Adding new motorcycle");
             db.close();

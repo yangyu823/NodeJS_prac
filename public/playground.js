@@ -11,7 +11,6 @@ const myobj = {};
 
 
 const file = './public/NewBike.json';
-
 exports.AppendNew = async (data) => {
     jsonfile.writeFile(file, data, {flag: 'a'}, (err) => {
         if (err) console.error(err);
