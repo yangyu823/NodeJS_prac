@@ -17,7 +17,7 @@ router.get("/brand/:name", (req, res) => {
         if (err) throw err;
         const dbo = db.db("motorcycle");
         // const query = {brand: req.params.brand};
-        dbo.collection("superbike").createIndex({name: "text"})
+        dbo.collection("superbike").createIndex({name: "text"});
         dbo.collection("superbike").findOne({$text: {$search: req.params.name}}, function (err, result) {
             if (err) throw err;
             // res.send(result);
@@ -63,7 +63,7 @@ router.get('/alldb', (req, res) => {
             const dbo = db.db("motorcycle");
             dbo.collection("superbike").find({}).toArray(function (err, result) {
                 if (err) throw err;
-                const title = "SuperBike - Mongo DB"
+                const title = "SuperBike - Mongo DB";
                 res.render('index_mongo', {bike: result, title: title});
                 db.close();
             })

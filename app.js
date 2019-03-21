@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
     res.locals.userValue = null;
     next();
 });
-app.post('/add/new', function (req, res) {
+app.post('/add/new', async (req, res) => {
     const result = {
         name: req.body.name,
         brand: req.body.brand,
@@ -29,12 +29,13 @@ app.post('/add/new', function (req, res) {
         capacity: req.body.capacity,
         url: req.body.url
     };
+    api.SequentialTest(result);
 
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
         if (err) throw err;
         const dbo = db.db("motorcycle");
         const bike = result;
-        dbo.collection("superbike").insertOne(bike, function (err, res) {
+        dbo.collection("superbike").insertOne(bike,  (err, res)=> {
             if (err) throw err;
             console.log("Adding new motorcycle");
             db.close();

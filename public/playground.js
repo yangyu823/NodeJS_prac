@@ -42,23 +42,23 @@ async function test() {
 test();
 
 // Async process playground
-const SequentialTest = async ()=>{
+const SequentialTest = async (data)=>{
     console.log('starting');
     await delay(1);
     console.log('waiting');
     await delay(2);
     try {
-        await writeFile('file.txt', 'Sample File ....');
+        await writeFile('./public/bike.json', data);
         beep();
     }catch (e) {
         console.error(e);
     }
     console.log('file.txt created ');
     await delay(3);
-    await unlink('file.txt');
+    // await unlink('file.txt');
     beep();
     console.log('file.txt removed');
     return Promise.resolve();
 };
 
-SequentialTest();
+SequentialTest('hello world');
