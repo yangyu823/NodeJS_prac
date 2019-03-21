@@ -70,7 +70,7 @@ This is using local file to display all the data
 */
 router.get('/all', async (req, res) => {
     const advice = await api.getAdvice();
-    res.render('index', {bike: data, info:advice});
+    res.render('index', {bike: data, info: advice});
 });
 
 router.get('/origin/:country', (req, res) => {
