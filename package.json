@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nodemon --exec \"mocha || true\"     ",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "pg": "nodemon public/upload.js"
   },
   "author": "",
   "license": "ISC",
