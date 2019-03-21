@@ -1,8 +1,10 @@
 const express = require('express');
 const data = require("./public/data");
 const MongoClient = require('mongodb').MongoClient;
-// const url = "mongodb://localhost:27017/";
-const url = "mongodb://mongo/test";
+//
+const url = "mongodb://localhost:27017/";
+// const url = "mongodb://mongo/test";
+//
 const api = require('./3rdAPI/api');
 // const format = require('util').format;
 
