@@ -84,7 +84,7 @@ router.get('/origin/:country', (req, res) => {
 // Rendering Add New Bike Page
 router.get('/add', function (req, res) {
     res.render('insert', {
-        topicHead: 'Add new Bike',
+        topicHead: 'Add new Bike'
     });
     console.log('user accessing Home page');
 });

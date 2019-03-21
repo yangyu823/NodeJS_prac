@@ -44,10 +44,13 @@
     <button type="submit" name="upload">Upload</button>
 </form>
 
-<% if(userValue != null){ %>
-    <div> Successfully adding a <%= userValue.brand %>  <%= userValue.name %> motorcycle</div>
-    <div>The motorcycle data has been store in /public/NewBike.json</div>
-<% } %>
+<div>
+    <% if(userValue != null){ %>
+        <div> Successfully adding a <%= userValue.brand %>  <%= userValue.name %> motorcycle</div>
+        <div>The motorcycle data has been store in /public/NewBike.json</div>
+    <% } %>
+</div>
+
 
 <br/>
 <br/>
