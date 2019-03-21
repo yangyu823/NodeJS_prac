@@ -33,16 +33,13 @@
             <td><input type="file" name="image"/><br/><br/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Save"></td>
+            <td><br/><br/><br/></td>
+
+            <td colspan="2"><input type="submit" value="Submit"></td>
         </tr>
     </table>
 </form>
 
-<h4>Image Upload</h4>
-<form method="post" action="upload/post" enctype="multipart/form-data">
-    <input type="file" name="image"/><br/><br/>
-    <button type="submit" name="upload">Upload</button>
-</form>
 
 <% if(userValue != null){ %>
     <div> Successfully adding a <%= userValue.brand %>  <%= userValue.name %> motorcycle</div>
