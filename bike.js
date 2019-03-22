@@ -7,6 +7,7 @@ const upload = require('./bike_upload');
 const Resize = require('./bike_resize');
 //
 // const url = "mongodb://localhost:27017/";
+
 const url = "mongodb://mongo/test";
 //
 const api = require('./3rdAPI/api');
