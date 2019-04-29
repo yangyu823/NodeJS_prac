@@ -1,6 +1,13 @@
 language: node_js
 node_js:
-  - "8"
+  - '8'
 script:
   - npm install
   - npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: "8vmiiMf0mlxSuy1eRb7LFdivtgQQ4N9LkHltiedzvHHFBF7loXYrb3QjYonsPiQ16ixAE5y1HIshml5b4JJfv1OJkvBID1ey1SbxSor6brdSm2Ckv2t4aJEsSwXwf7J3ERkg/3+lCkdcj/ODR8ehRIyu7qYm8Ds7HGKp4QhvYukWAQK9ZawIMUW8Eg9gucPQ38d6loJCX7Qk2IQfdbg/PkqV3hXIeZP35G3grQqXOjlYA5Qt+7NGeik9Dv4g0KH2DbnBonpC/I5RgpfqAd8G7spxrPN0pR1sdn9qs2j8haF0wDQfPhvOi+9dAlzM25b1CXfdc4O+KpIy46zKEmlxcx5ixW3wc3atTX57Z9AZnrkzcmfGDul2zQ9TJK8qt/4ywL9QBnDuFnqUlTafDj7zOJOo8cbmKI7fxjoctrr9KG9v8blUkLbOZIonpdM4lFSGO4R8JqZEbCwc1a0Q18ZxF5qfo4FUbW4IrUchPJaiZ6IsjnqHwImNTMHcC1LAyZDcT7ZXsl1ZBtNlTkkx3ohcnUjX8HWqZTFYWIqZY7P2qS/SjaT6iZqXQcV+iU6/fvi3BOE+Ghkj1/pLJKPrDZsVkbxpQNEHm5AXaNAUGdMzRx7KXa4EsG3FeEnFhjtbO5IFUDX0W1SbbB18GN0LCXT8rQBCtZ6f111Zi5RTBct4nT8="
+  app: yu823
+  on:
+    repo: yangyu823/node-yu
