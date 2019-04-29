@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon --exec \"mocha || true\"     ",
+    "test": "mocha ./test --exit",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "pg": "nodemon public/upload.js"
