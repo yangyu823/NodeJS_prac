@@ -6,9 +6,9 @@ const router = express.Router();
 const upload = require('./bike_upload');
 const Resize = require('./bike_resize');
 //
-// const url = "mongodb://localhost:27017/";
+const url = "mongodb+srv://723310:Malina23,,@cluster0-7r2qb.gcp.mongodb.net/test?retryWrites=true";
 
-const url = "mongodb://mongo/test";
+// const url = "mongodb://mongo/test";
 //
 const api = require('./3rdAPI/api');
 
